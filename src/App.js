@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 import Navbar from './components/navbar';
 import Input from './components/input/style';
@@ -10,8 +10,28 @@ import cardView from './components/toggleButton/toogleButtonAssets/cardView.png'
 import ToggleButton from './components/toggleButton/style';
 import ListWithInfo from './components/listWithInfo/listWithInfo';
 import CardWithInfo from './components/cardWithInfo/cardWithInfo';
+import data from './data/data.json';
 
 function App() {
+  const [viewMode, setViewMode] = useState({ cardMode: true });
+  function activeCardView(selectedMode) {
+    if (selectedMode !== viewMode.cardMode) {
+      setViewMode({ cardMode: !viewMode.cardMode });
+    }
+  }
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setSearchTerm(event.target.value);
+  };
+  useEffect(() => {
+    const results = data.filter((item) =>
+      item.toString().toLowerCase().includes(searchTerm)
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
+
   return (
     <>
       <Container fluid>
@@ -24,13 +44,25 @@ function App() {
               <Title>My chatbots</Title>
             </Col>
             <Col lg={7} md={7} sm={8}>
-              <Input placeholder="Search" />
+              <Input
+                placeholder="Search"
+                onChange={handleChange}
+                value={searchTerm}
+              />
               <Button>Order by name</Button>
               <Button>Order by creation</Button>
             </Col>
             <Col lg={1} md={1} sm={2}>
-              <ToggleButton src={cardView} alt="card view" />
-              <ToggleButton src={listView} alt="list view" />
+              <ToggleButton
+                onClick={() => activeCardView(true)}
+                src={cardView}
+                alt="card view"
+              />
+              <ToggleButton
+                onClick={() => activeCardView(false)}
+                src={listView}
+                alt="list view"
+              />
             </Col>
           </Row>
         </div>
@@ -38,13 +70,14 @@ function App() {
       <Container>
         <Row alignItems="center" justifyContent="between">
           <Col>
-            <ListWithInfo />
+            {searchResults.map((item) =>
+              viewMode.cardMode ? (
+                <CardWithInfo data={item} />
+              ) : (
+                <ListWithInfo data={item} />
+              )
+            )}
           </Col>
-          <Row alignItems="center" justifyContent="between">
-            <Col>
-              <CardWithInfo />
-            </Col>
-          </Row>
         </Row>
       </Container>
     </>

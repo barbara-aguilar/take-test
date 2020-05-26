@@ -1,33 +1,27 @@
 import React from 'react';
-import data from '../../data/data.json';
 import Style from './style';
 import favIcon from './cardWithInfo-Assets/star.png';
 import Avatar from '../avatar/style';
-import moment from 'moment';
+import dataParser from '../../util/dateParser';
 
-let myData = data.map((item) => {
+const CardWithInfo = (props) => {
+  const { image, shortName, created } = props.data;
   return (
-    <>
+    <Style.CardWrapper>
       <Style.Card>
         <div>
           <Style.FavoriteIcon src={favIcon} />
         </div>
         <Style.ContentWrapper>
-          <Avatar src={item.image} />
+          <Avatar src={image} />
           <Style.Title>
-            {item.shortName.toString().replace('_', ' ').toLowerCase()}
+            {shortName.toString().replace('_', ' ').toLowerCase()}
           </Style.Title>
-          <Style.Subtitle>
-            {`Created at ${moment(item.created).format('DD/MM/YYYY')}`}
-          </Style.Subtitle>
+          <Style.Subtitle>{`Created at ${dataParser(created)}`}</Style.Subtitle>
         </Style.ContentWrapper>
       </Style.Card>
-    </>
+    </Style.CardWrapper>
   );
-});
-
-const CardWithInfo = () => {
-  return <Style.CardWrapper>{myData}</Style.CardWrapper>;
 };
 
 export default CardWithInfo;

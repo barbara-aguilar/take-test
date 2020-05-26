@@ -1,11 +1,11 @@
 import React from 'react';
-import data from '../../data/data.json';
 import Style from './style';
 import favIcon from './listWithInfo-Assets/star.png';
 import Avatar from '../avatar/style';
-import moment from 'moment';
+import dataParser from '../../util/dateParser';
 
-let myData = data.map((item) => {
+const ListWithInfo = (props) => {
+  const { image, shortName, created } = props.data;
   return (
     <>
       <Style.ListWrapper>
@@ -14,13 +14,13 @@ let myData = data.map((item) => {
         </div>
         <Style.List>
           <Style.ContentWrapper>
-            <Avatar src={item.image} />
+            <Avatar src={image} />
             <Style.Title>
-              {item.shortName.toString().replace('_', ' ').toLowerCase()}
+              {shortName.toString().replace('_', ' ').toLowerCase()}
             </Style.Title>
             <Style.Aligner>
               <Style.Subtitle>
-                {`Created at ${moment(item.created).format('DD/MM/YYYY')}`}
+                {`Created at ${dataParser(created)}`}
               </Style.Subtitle>
             </Style.Aligner>
           </Style.ContentWrapper>
@@ -28,10 +28,6 @@ let myData = data.map((item) => {
       </Style.ListWrapper>
     </>
   );
-});
-
-const ListWithInfo = () => {
-  return <div>{myData}</div>;
 };
 
 export default ListWithInfo;

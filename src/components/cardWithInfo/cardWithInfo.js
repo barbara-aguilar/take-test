@@ -7,18 +7,16 @@ import dataParser from '../../util/dateParser';
 const CardWithInfo = (props) => {
   const { image, name, created } = props.data;
   return (
-    <Style.CardWrapper>
-      <Style.Card>
-        <div>
-          <Style.FavoriteIcon src={favIcon} />
-        </div>
-        <Style.ContentWrapper>
-          <Avatar src={image} />
-          <Style.Title>{name}</Style.Title>
-          <Style.Subtitle>{`Created at ${dataParser(created)}`}</Style.Subtitle>
-        </Style.ContentWrapper>
-      </Style.Card>
-    </Style.CardWrapper>
+    <Style.Card>
+      <div>
+        <Style.FavoriteIcon src={favIcon} />
+      </div>
+      <Style.ContentWrapper>
+        <Avatar src={image} />
+        <Style.Title>{name}</Style.Title>
+        <Style.Subtitle>{`Created at ${dataParser(created)}`}</Style.Subtitle>
+      </Style.ContentWrapper>
+    </Style.Card>
   );
 };
 

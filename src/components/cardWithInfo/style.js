@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-const CardWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 const Card = styled.div`
   margin: 15px;
   width: 180px;
@@ -59,7 +51,6 @@ const Aligner = styled.div`
 
 export default {
   Card,
-  CardWrapper,
   ContentWrapper,
   Title,
   Subtitle,

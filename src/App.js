@@ -14,39 +14,53 @@ import data from './data/data.json';
 
 function App() {
   const [viewMode, setViewMode] = useState({ cardMode: true });
+
   function activeCardView(selectedMode) {
     if (selectedMode !== viewMode.cardMode) {
       setViewMode({ cardMode: !viewMode.cardMode });
     }
   }
+
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState(data);
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
   useEffect(() => {
-    let results = data.filter((item) =>
+    const results = data.filter((item) =>
       item.name.toLowerCase().includes(searchTerm)
     );
     setSearchResults(results);
   }, [searchTerm]);
 
-  const sortByName = () => {
-    const resultSorted = searchResults.sort(function (a, b) {
-      var nameA = a.name.toUpperCase();
-      var nameB = b.name.toUpperCase();
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    setSearchResults(resultSorted);
-  };
+  const [sortParameter, setSortParameter] = useState('');
+  useEffect(() => {
+    const sortResultsBy = () => {
+      const sorted = [...searchResults].sort((a, b) => {
+        let A, B;
+        if (sortParameter === 'name') {
+          A = a.name;
+          B = b.name;
+        }
+        if (sortParameter === 'date') {
+          A = a.created;
+          B = b.created;
+        }
+        if (A < B) {
+          return -1;
+        }
+        if (A > B) {
+          return 1;
+        }
+        return 0;
+      });
+      setSearchResults(sorted);
+    };
+    sortResultsBy(sortParameter);
+    // eslint-disable-next-line
+  }, [sortParameter]);
 
   return (
     <>
@@ -65,8 +79,12 @@ function App() {
                 onChange={handleChange}
                 value={searchTerm}
               />
-              <Button onClick={() => sortByName()}>Order by name</Button>
-              <Button>Order by creation</Button>
+              <Button onClick={() => setSortParameter('name')}>
+                Order by name
+              </Button>
+              <Button onClick={() => setSortParameter('date')}>
+                Order by creation
+              </Button>
             </Col>
             <Col lg={1} md={1} sm={2}>
               <ToggleButton
@@ -84,16 +102,16 @@ function App() {
         </div>
       </Container>
       <Container>
-        <Row alignItems="center" justifyContent="between">
-          <Col>
-            {searchResults.map((item) =>
-              viewMode.cardMode ? (
-                <CardWithInfo data={item} />
-              ) : (
+        <Row alignItems="center" justifyContent="around">
+          {searchResults.map((item) =>
+            viewMode.cardMode ? (
+              <CardWithInfo data={item} />
+            ) : (
+              <Col>
                 <ListWithInfo data={item} />
-              )
-            )}
-          </Col>
+              </Col>
+            )
+          )}
         </Row>
       </Container>
     </>

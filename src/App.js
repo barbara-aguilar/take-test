@@ -21,16 +21,32 @@ function App() {
   }
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
   const handleChange = (event) => {
-    console.log(event.target.value);
     setSearchTerm(event.target.value);
   };
+
   useEffect(() => {
-    const results = data.filter((item) =>
-      item.toString().toLowerCase().includes(searchTerm)
+    let results = data.filter((item) =>
+      item.name.toLowerCase().includes(searchTerm)
     );
     setSearchResults(results);
   }, [searchTerm]);
+
+  const sortByName = () => {
+    const resultSorted = searchResults.sort(function (a, b) {
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    setSearchResults(resultSorted);
+  };
 
   return (
     <>
@@ -49,7 +65,7 @@ function App() {
                 onChange={handleChange}
                 value={searchTerm}
               />
-              <Button>Order by name</Button>
+              <Button onClick={() => sortByName()}>Order by name</Button>
               <Button>Order by creation</Button>
             </Col>
             <Col lg={1} md={1} sm={2}>

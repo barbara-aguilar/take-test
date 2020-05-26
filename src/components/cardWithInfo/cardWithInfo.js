@@ -5,7 +5,7 @@ import Avatar from '../avatar/style';
 import dataParser from '../../util/dateParser';
 
 const CardWithInfo = (props) => {
-  const { image, shortName, created } = props.data;
+  const { image, name, created } = props.data;
   return (
     <Style.CardWrapper>
       <Style.Card>
@@ -14,9 +14,7 @@ const CardWithInfo = (props) => {
         </div>
         <Style.ContentWrapper>
           <Avatar src={image} />
-          <Style.Title>
-            {shortName.toString().replace('_', ' ').toLowerCase()}
-          </Style.Title>
+          <Style.Title>{name}</Style.Title>
           <Style.Subtitle>{`Created at ${dataParser(created)}`}</Style.Subtitle>
         </Style.ContentWrapper>
       </Style.Card>

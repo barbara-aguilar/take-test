@@ -5,7 +5,7 @@ import Avatar from '../avatar/style';
 import dataParser from '../../util/dateParser';
 
 const ListWithInfo = (props) => {
-  const { image, shortName, created } = props.data;
+  const { image, name, created } = props.data;
   return (
     <>
       <Style.ListWrapper>
@@ -15,9 +15,7 @@ const ListWithInfo = (props) => {
         <Style.List>
           <Style.ContentWrapper>
             <Avatar src={image} />
-            <Style.Title>
-              {shortName.toString().replace('_', ' ').toLowerCase()}
-            </Style.Title>
+            <Style.Title>{name}</Style.Title>
             <Style.Aligner>
               <Style.Subtitle>
                 {`Created at ${dataParser(created)}`}

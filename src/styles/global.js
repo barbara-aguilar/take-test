@@ -12,4 +12,7 @@ export default createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     background-color: #e1f2f1;
   }
+  a:link{
+text-decoration:none;
+}
 `;

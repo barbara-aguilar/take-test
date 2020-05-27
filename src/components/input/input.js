@@ -15,11 +15,8 @@ class Input extends Component {
       <>
         <Style.Input
           onChange={this.handleChange}
-          onBlur={this.handleChange}
           type={this.props.type}
-          id={this.props.id}
           placeholder={this.props.placeholder}
-          required={this.props.required}
         />
       </>
     );

@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 import myLogo from './components/navbar/navbar-assets/logo.png';
 import Home from './pages/home/home';
 import Profile from './pages/profile/index';
+import { FooterDiv } from './components/footer/footer';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/profile" component={Profile} />
       </Switch>
+      <Container fluid>
+        <FooterDiv />
+      </Container>
     </>
   );
 }

@@ -15,3 +15,15 @@ export const ProfileCard = styled.div`
   -moz-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.42);
   box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
 `;
+
+export const WrapperFlexRow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const WrapperColumnRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  align-items: center;
+`;

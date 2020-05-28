@@ -1,6 +1,6 @@
 import React from 'react';
 import Style from './style';
-import favIcon from './listWithInfo-Assets/star.png';
+import favIcon from './listWithInfo-Assets/favorite.png';
 import Avatar from '../avatar/style';
 import dataParser from '../../util/dateParser';
 

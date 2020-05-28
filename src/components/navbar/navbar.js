@@ -1,9 +1,12 @@
 import React from 'react';
 import Style from './style';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ logo }) => (
   <Style.Nav>
-    <Style.Logo src={logo} alt="Blip" />
+    <Link exact to="/">
+      <Style.Logo src={logo} alt="Blip" />
+    </Link>
   </Style.Nav>
 );
 

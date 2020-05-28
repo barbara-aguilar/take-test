@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 const Avatar = styled.img`
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  margin-left: 20px;
+  width: ${(props) => props.size};
+  height: ${(props) => props.size};
+  border-radius: ${(props) => props.borderRadius};
 `;
 
 export default Avatar;

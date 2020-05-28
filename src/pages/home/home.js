@@ -11,6 +11,19 @@ import CardWithInfo from '../../components/cardWithInfo/cardWithInfo';
 import { Wrapper } from '../../pages/profile/style';
 import data from '../../data/data.json';
 
+const dataApp = data.map((item) => ({
+  shortName: item.shortName,
+  name: item.name,
+  image: item.image,
+  userActived: item.analytics.user.actived,
+  messagesSent: item.analytics.message.sent,
+  messagesReceived: item.analytics.message.received,
+  culture: item.culture,
+  plan: item.plan,
+  created: item.created,
+  isFavorite: false,
+}));
+
 function Home() {
   const [viewMode, setViewMode] = useState({ cardMode: true });
 
@@ -21,14 +34,14 @@ function Home() {
   }
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState(data);
+  const [searchResults, setSearchResults] = useState(dataApp);
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
   useEffect(() => {
-    const results = data.filter((item) =>
+    const results = dataApp.filter((item) =>
       item.name.toLowerCase().includes(searchTerm)
     );
     setSearchResults(results);
@@ -58,7 +71,6 @@ function Home() {
       setSearchResults(sorted);
     };
     sortResultsBy(sortParameter);
-    // eslint-disable-next-line
   }, [sortParameter]);
 
   return (
@@ -96,6 +108,12 @@ function Home() {
             </Col>
           </Row>
         </Wrapper>
+      </Container>
+      <Container>
+        <Wrapper>
+          <hr />
+        </Wrapper>
+        <Row></Row>
       </Container>
       <Container>
         <Wrapper>

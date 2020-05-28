@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 import {
   ProfileCard,
@@ -13,10 +13,34 @@ import userLogo from './profile-assets/user.png';
 import unionLogo from './profile-assets/union.png';
 import sentLogo from './profile-assets/sent.png';
 
-const Profile = () => {
-  return (
-    <>
-      <Container fluid>
+const Profile = ({ match }) => (
+  <div>
+    <h3>ID: {match.params.id}</h3>
+  </div>
+);
+
+export default Profile;
+
+// class Profile extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       item: null,
+//     };
+//   }
+//   componentDidMount() {
+//     const item = this.props.match.params.id;
+//     this.setState({ item });
+//     console.log(this.params.id);
+//   }
+
+//   render() {
+//     return <h1>oi {this.state.item.shortName}</h1>;
+//   }
+// }
+
+// <>
+/* <Container fluid>
         <Wrapper>
           <Row justifyContent="around" alignItems="center">
             <Col lg={8} md={8}>
@@ -25,7 +49,7 @@ const Profile = () => {
                   <ProfileCard>
                     <div>
                       <p>Region and Idiom</p>
-                      <p>item.culture</p>
+                      <p>{culture}</p>
                     </div>
                     <div>
                       <p>Timezone</p>
@@ -89,8 +113,4 @@ const Profile = () => {
           </Row>
         </Wrapper>
       </Container>
-    </>
-  );
-};
-
-export default Profile;
+    </> */

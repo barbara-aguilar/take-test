@@ -10,6 +10,8 @@ import ListWithInfo from '../../components/listWithInfo/listWithInfo';
 import CardWithInfo from '../../components/cardWithInfo/cardWithInfo';
 import { Wrapper } from '../../pages/profile/style';
 import data from '../../data/data.json';
+import { Route } from 'react-router-dom';
+import Profile from '../profile/profile';
 
 function Home() {
   const [viewMode, setViewMode] = useState({ cardMode: true });
@@ -109,6 +111,7 @@ function Home() {
                 </Col>
               )
             )}
+            <Route path="/profile:id" component={Profile} />
           </Row>
         </Wrapper>
       </Container>

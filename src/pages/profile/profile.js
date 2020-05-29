@@ -119,7 +119,9 @@ const Profile = () => {
                     {plan === 'standard' ? 'free' : plan}
                   </Title>
                 </InternContent>
-                <Button>Update account</Button>
+                <Col lg={5} md={3}>
+                  <Button>Update account</Button>
+                </Col>
               </WrapperColumnRow>
             </Col>
           </Row>

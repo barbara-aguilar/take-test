@@ -77,24 +77,28 @@ function Home() {
     <>
       <Container>
         <Wrapper>
-          <Row alignItems="center" justifyContent="around">
-            <Col lg={4} md={4} sm={12} alignSelf="start">
+          <Row alignItems="center" justifyContent="between">
+            <Col lg={3} md={3} sm={2}>
               <Title>My chatbots</Title>
             </Col>
-            <Col lg={7} md={7} sm={8}>
+            <Col lg={3} md={2} sm={2}>
               <Input
                 placeholder="Search"
                 onChange={handleChange}
                 value={searchTerm}
               />
+            </Col>
+            <Col lg={2} md={2}>
               <Button onClick={() => setSortParameter('name')}>
                 Order by name
               </Button>
+            </Col>
+            <Col lg={2} md={2}>
               <Button onClick={() => setSortParameter('date')}>
                 Order by creation
               </Button>
             </Col>
-            <Col lg={1} md={1} sm={2}>
+            <Col lg={2} md={2} hiddenSmDown>
               <ToggleButton
                 onClick={() => activeCardView(true)}
                 src={cardView}

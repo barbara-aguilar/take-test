@@ -7,9 +7,9 @@ export default createGlobalStyle`
     outline: 0;
     box-sizing: border-box;
   }
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+  /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap'); */
   body{
-    font-family: 'Roboto', sans-serif;
+    font-family: sans-serif;
     background-color: #e1f2f1;
   }
   a:link{
